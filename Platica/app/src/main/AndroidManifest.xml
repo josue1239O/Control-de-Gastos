@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <!--
+    ============================================================================
+      ⚠️⚠️  REQUISITO CRÍTICO DE PRIVACIDAD Y OFFLINE (RF-31 / CR-01)  ⚠️⚠️
+
+      LA APLICACIÓN *NO* DECLARA EL PERMISO `android.permission.INTERNET`.
+
+      Esto NO es un olvido: es INTENCIONAL. Al NO declarar este permiso,
+      el sistema operativo Android le IMPIDE a la app abrir cualquier
+      conexión de red (a nivel del propio sistema operativo).
+
+      Resultado:
+        • Platica funciona 100% SIN INTERNET y SIN GASTAR MEGAS.
+        • Ningún dato del usuario sale jamás del teléfono.
+        • No hay Firebase, no hay servidores, no hay nube.
+
+      ⚠️ NO agregar la siguiente línea (queda documentada como ejemplo):
+         <uses-permission android:name="android.permission.INTERNET"/>
+    ============================================================================
+    -->
+
+    <!-- Permiso para notificaciones (Android 13+) — para recordatorios LOCALES -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- Permiso biométrico (solo para el sensor local del dispositivo) -->
+    <uses-permission android:name="android.permission.USE_BIOMETRIC" />
+
+    <!-- Permiso para programar tareas locales (recordatorios/gastos fijos) -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
+    <!--
+      Bloqueo explícito de permisos relacionados con la red.
+      Alguna librería transitiva (WorkManager/security-crypto) podría
+      inyectar ACCESS_NETWORK_STATE; lo removemos para reafirmar que
+      Platica NO tiene ninguna relación con la red.
+    -->
+    <uses-permission
+        android:name="android.permission.ACCESS_NETWORK_STATE"
+        tools:node="remove" />
+
+    <!--
+      Salvaguarda: aunque NUNCA declaramos INTERNET, forzamos su remoción
+      por si alguna dependencia futura intentara inyectarlo. Así Platica
+      jamás podrá acceder a la red. Esto es parte del requisito CR-01 / RF-31.
+    -->
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        tools:node="remove" />
+
+    <application
+        android:name=".PlaticaApp"
+        android:allowBackup="false"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Platica"
+        tools:targetApi="35">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.Platica"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Deshabilita el proveedor de WorkManager por defecto (usamos Hilt) -->
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+
+    </application>
+
+</manifest>

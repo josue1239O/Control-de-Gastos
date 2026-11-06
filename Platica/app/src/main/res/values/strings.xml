@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Platica</string>
+    <string name="app_subtitle">Control de gastos</string>
+
+    <!-- Navegación -->
+    <string name="nav_inicio">Inicio</string>
+    <string name="nav_movimientos">Movimientos</string>
+    <string name="nav_metas">Metas</string>
+    <string name="nav_analisis">Análisis</string>
+    <string name="nav_ajustes">Ajustes</string>
+
+    <!-- Dashboard -->
+    <string name="saldo_disponible">Saldo disponible</string>
+    <string name="patrimonio_invertido">Invertido</string>
+    <string name="balance_ciclo">Balance del ciclo</string>
+    <string name="tasa_ahorro">Tasa de ahorro</string>
+    <string name="ultimos_movimientos">Últimos movimientos</string>
+    <string name="mis_metas">Mis metas</string>
+
+    <!-- Acciones -->
+    <string name="nueva_transaccion">Nueva transacción</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="editar">Editar</string>
+    <string name="aportar">Aportar</string>
+
+    <!-- Tipos -->
+    <string name="ingreso">Ingreso</string>
+    <string name="gasto">Gasto</string>
+    <string name="aporte_meta">Aporte a meta</string>
+
+    <!-- Estados vacíos -->
+    <string name="sin_datos">Aún no hay datos. ¡Empezá registrando tu primer movimiento!</string>
+
+    <!-- Moneda -->
+    <string name="moneda_simbolo">Bs.</string>
+</resources>

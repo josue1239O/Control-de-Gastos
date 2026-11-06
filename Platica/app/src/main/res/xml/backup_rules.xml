@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Reglas de respaldo automático de Android DESHABILITADAS.
+  Platica usa su PROPIO sistema de respaldo (JSON cifrado elegido por el usuario).
+  Con allowBackup=false evitamos que los datos salgan por vías no controladas.
+-->
+<full-backup-content>
+    <exclude domain="database" path="." />
+    <exclude domain="sharedpref" path="." />
+</full-backup-content>

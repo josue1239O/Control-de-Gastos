@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Paleta minimalista en blanco y negro -->
+    <color name="platica_negro">#0A0A0A</color>
+    <color name="platica_gris_oscuro">#1C1C1C</color>
+    <color name="platica_gris_medio">#6B6B6B</color>
+    <color name="platica_gris_claro">#BDBDBD</color>
+    <color name="platica_fondo">#FFFFFF</color>
+    <color name="platica_oscuro">#0A0A0A</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+</resources>
